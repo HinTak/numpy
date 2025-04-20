@@ -48,7 +48,7 @@ jobs:
         $PythonVersion = $PythonVersionParts[1]
 
         #Downloading the package for appropriate python version from nuget
-        $PythonARM64NugetLink = "https://www.nuget.org/api/v2/package/pythonarm64/$PythonVersion"
+        $PythonARM64NugetLink = "https://www.nuget.org/api/v2/package/pythonarm64/pythonarm64.3.13.3.nupkg"
         $PythonARM64NugetZip = "nuget_python.zip"
         $PythonARM64NugetDir = "temp_nuget"
         Invoke-WebRequest $PythonARM64NugetLink -OutFile $PythonARM64NugetZip
