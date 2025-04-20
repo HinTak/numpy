@@ -51,15 +51,15 @@ jobs:
         $PythonARM64NugetLink = "https://www.nuget.org/api/v2/package/pythonarm64/$PythonVersion"
         $PythonARM64NugetZip = "nuget_python.zip"
         $PythonARM64NugetDir = "temp_nuget"
-        #Invoke-WebRequest $PythonARM64NugetLink -OutFile $PythonARM64NugetZip
+        Invoke-WebRequest $PythonARM64NugetLink -OutFile $PythonARM64NugetZip
 
         #Changing the libs folder to enable python libraries to be linked for arm64
-        #Expand-Archive $PythonARM64NugetZip $PythonARM64NugetDir
-        #Copy-Item $PythonARM64NugetDir\tools\libs\* $PythonDir\libs
-        #Remove-Item -Force -Recurse $PythonARM64NugetDir
-        #Remove-Item -Force $PythonARM64NugetZip
+        Expand-Archive $PythonARM64NugetZip $PythonARM64NugetDir
+        Copy-Item $PythonARM64NugetDir\tools\libs\* $PythonDir\libs
+        Remove-Item -Force -Recurse $PythonARM64NugetDir
+        Remove-Item -Force $PythonARM64NugetZip
 
-        #if ((Test-Path -LiteralPath variable:\LASTEXITCODE)) { exit $LASTEXITCODE }
+        if ((Test-Path -LiteralPath variable:\LASTEXITCODE)) { exit $LASTEXITCODE }
 
     - name: Prepare Licence
       shell: powershell
