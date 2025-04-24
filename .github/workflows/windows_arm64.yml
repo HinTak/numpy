@@ -33,6 +33,8 @@ jobs:
         python-version: ${{env.python_version}}
         architecture: ARM64
         allow-prereleases: true
+        cache: pip
+        cache-dependency-path: .github/workflows/windows_arm64.yml
 
     - name: Install build dependencies from PyPI
       run: |
