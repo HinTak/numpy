@@ -32,6 +32,7 @@ jobs:
       with:
         python-version: ${{env.python_version}}
         architecture: ARM64
+        allow-prereleases: true
 
     - name: Install build dependencies from PyPI
       run: |
