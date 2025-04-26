@@ -191,6 +191,7 @@ jobs:
           path: ./wheelhouse/*.whl
 
       - uses: mamba-org/setup-micromamba@0dea6379afdaffa5d528b3d1dabc45da37f443fc
+        if: ${{ matrix.buildplat[1] != 'win_arm64' }} # unsupported platform
         with:
           # for installation of anaconda-client, required for upload to
           # anaconda.org
