@@ -97,6 +97,9 @@ jobs:
           # Don't build PyPy 32-bit windows
           - buildplat: [windows-2019, win32, ""]
             python: "pp311"
+          # Don't build PyPy arm64 windows
+          - buildplat: [windows-11-arm, win_arm64, ""]
+            python: "pp311"
           # No PyPy on musllinux images
           - buildplat: [ ubuntu-22.04, musllinux_x86_64, "" ]
             python: "pp311"
