@@ -98,7 +98,7 @@ jobs:
         spin test -- --timeout=600 --durations=10
 
   msvc_32bit_and_arm64_python_no_openblas:
-    name: MSVC, 32-bit x86 + ARM64 Python , no BLAS
+    name: MSVC, ${{ matrix.architecture }} Python , no BLAS
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
