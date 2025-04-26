@@ -91,6 +91,7 @@ jobs:
           - [macos-14, macosx_arm64, accelerate]  # always use accelerate
           - [windows-2019, win_amd64, ""]
           - [windows-2019, win32, ""]
+          - [windows-11-arm, win_arm64, ""]
         python: ["cp311", "cp312", "cp313", "cp313t", "pp311"]
         exclude:
           # Don't build PyPy 32-bit windows
@@ -120,6 +121,12 @@ jobs:
         uses: bus1/cabuild/action/msdevshell@e22aba57d6e74891d059d66501b6b5aed8123c4d  # v1
         with:
           architecture: 'x86'
+
+      - name: Setup MSVC ARM64
+        if: ${{ matrix.buildplat[1] == 'win_arm64' }}
+        uses: bus1/cabuild/action/msdevshell@e22aba57d6e74891d059d66501b6b5aed8123c4d  # v1
+        with:
+          architecture: 'arm64'
 
       - name: pkg-config-for-win
         run: |
