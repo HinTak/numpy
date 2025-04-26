@@ -189,7 +189,7 @@ config-settings = "setup-args=--vsenv setup-args=-Dallow-noblas=true build-dir=b
 repair-wheel-command = ""
 
 [[tool.cibuildwheel.overrides]]
-select = "*-arm64"
+select = "*arm64"
 config-settings = "setup-args=--vsenv setup-args=-Dallow-noblas=true build-dir=build"
 repair-wheel-command = ""
 
