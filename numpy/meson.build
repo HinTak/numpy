@@ -332,7 +332,7 @@ pure_subdirs = [
   'core',
   'strings',
 ]
-if py.version().version_compare('<3.12')
+if py.version().version_compare('<3.11')
   pure_subdirs += 'distutils'
 endif
 
