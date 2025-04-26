@@ -6791,10 +6791,12 @@ class TestDot:
         v = np.random.random_sample((16, 32))
 
         r = np.empty((1024, 32))
+        if HAS_REFCOUNT:
+            orig_refcount = sys.getrefcount(r)
         for i in range(12):
             dot(f, v, r)
         if HAS_REFCOUNT:
-            assert_equal(sys.getrefcount(r), 2)
+            assert_equal(sys.getrefcount(r), orig_refcount)
         r2 = dot(f, v, out=None)
         assert_array_equal(r2, r)
         assert_(r is dot(f, v, out=r))
@@ -10457,3 +10459,13 @@ def test_array_interface_excess_dimensions_raises():
     # Now, using np.asanyarray on this dummy should trigger a ValueError (not segfault)
     with pytest.raises(ValueError, match="dimensions must be within"):
         np.asanyarray(dummy)
+
+@pytest.mark.parametrize("dtype", [np.float32, np.float64, np.uint32, np.complex128])
+def test_array_dunder_array_preserves_dtype_on_none(dtype):
+    """
+    Regression test for: https://github.com/numpy/numpy/issues/27407
+    Ensure that __array__(None) returns an array of the same dtype.
+    """
+    a = np.array([1], dtype=dtype)
+    b = a.__array__(None)
+    assert_array_equal(a, b, strict=True)
