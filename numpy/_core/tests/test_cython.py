@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 import pytest
+import sysconfig
 
 import numpy as np
 from numpy.testing import assert_array_equal, IS_WASM, IS_EDITABLE
@@ -53,6 +54,8 @@ def install_temp(tmpdir_factory):
         subprocess.check_call(["meson", "--version"])
     except FileNotFoundError:
         pytest.skip("No usable 'meson' found")
+    if sysconfig.get_platform() == "win-arm64":
+        pytest.skip("Meson not working correctly on win-arm64")
     if sys.platform == "win32":
         subprocess.check_call(["meson", "setup",
                                "--buildtype=release",
