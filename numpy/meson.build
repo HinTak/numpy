@@ -332,7 +332,7 @@ pure_subdirs = [
   'core',
   'strings',
 ]
-if py.version().version_compare('<3.11') or (is_windows and host_machine.cpu_family() != 'aarch64')
+if py.version().version_compare('<3.12') or (is_windows and host_machine.cpu_family() != 'aarch64')
   pure_subdirs += 'distutils'
 endif
 
